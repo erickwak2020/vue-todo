@@ -2,7 +2,7 @@
   <div class="inputBox shadow">
     <input type="text" v-model="newTodoItem">
     <span class="addContainer" v-on:click="addTodo">
-      <i class="addBtn" aria-hidden="true">add</i>
+      <i class="addBtn fas fa-plus" aria-hidden="true"></i>
     </span>
   </div>
 </template>
