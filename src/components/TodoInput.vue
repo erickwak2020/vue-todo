@@ -5,14 +5,33 @@
       <i class="addBtn fas fa-plus" aria-hidden="true"></i>
     </span>
   </div>
+
+  <alert-modal :show="showModal" @close="showModal = false">
+    <template #header>
+      <h3>
+        경고
+        <i class="closeModalBtn fa fa-times"
+           aria-hidden="true"
+           @click="showModal = false">
+        </i>
+      </h3>
+    </template>
+    <template #body>
+      asdfsd
+    </template>
+  </alert-modal>
 </template>
 
 <script>
+
+import AlertModal from "@/components/common/AlertModal";
 export default {
   name: "TodoInput",
+  components: {AlertModal},
   data() {
     return {
       newTodoItem: "",
+      showModal: false
     }
   },
   methods: {
@@ -20,6 +39,8 @@ export default {
       if (this.newTodoItem !== '') {
         this.$emit('addTodoItem', this.newTodoItem);
         this.clearInput();
+      } else {
+        this.showModal = !this.showModal;
       }
     },
     clearInput: function () {
