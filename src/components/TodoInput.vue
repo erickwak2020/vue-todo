@@ -12,12 +12,16 @@ export default {
   name: "TodoInput",
   data() {
     return {
-      newTodoItem: ""
+      newTodoItem: "",
     }
   },
   methods: {
     addTodo: function () {
-      localStorage.setItem(this.newTodoItem, this.newTodoItem);
+      let newTodoItem = {
+        completed: false,
+        item: this.newTodoItem
+      }
+      localStorage.setItem(this.newTodoItem, JSON.stringify(newTodoItem));
       this.clearInput();
     },
     clearInput: function () {

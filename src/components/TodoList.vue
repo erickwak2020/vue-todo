@@ -1,16 +1,18 @@
 <template>
   <div>
     <ul>
-      <li v-for="(todoItem,index) in todoItems" class="shadow" v-bind:key="index">
-        {{todoItem}}
-        <span class="removeBtn" v-on:click="removeTodo(todoItem, index)">
+      <li v-for="(todoItem,index) in todoItems" class="shadow" :key="todoItem.item">
+        <i class="checkBtn fas fa-check"  :class="{checkBtnCompleted: todoItem.completed}"
+           @click="toggleComplete(todoItem)"></i>
+        <span :class="{textCompleted: todoItem.completed}">{{ todoItem.item }}</span>
+        <span class="removeBtn" v-on:click="removeTodo(todoItem.item, index)">
           <i class="removeBtn fas fa-trash-alt"></i>
         </span>
       </li>
     </ul>
   </div>
 </template>
-d
+
 <script>
 export default {
   name: "TodoList",
@@ -23,14 +25,21 @@ export default {
     removeTodo: function(todoItem, index) {
       localStorage.removeItem(todoItem);
       this.todoItems.splice(index, 1);
+    },
+    toggleComplete: function(todoItem) {
+      todoItem.completed = !todoItem.completed;
+      this.updateItem(todoItem);
+    },
+    updateItem(todoItem) { //로컬스토리지 데이터 갱신
+      localStorage.removeItem(todoItem.item);
+      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
     }
   },
   created: function () {
     console.log("created todoList");
-    for (const key in localStorage) {
-      if( key === localStorage.getItem(key) && key.length > 0) {
-        console.log(key + " , " + localStorage.getItem(key));
-        this.todoItems.push(localStorage.getItem(key));
+    for (let i = 0; i < localStorage.length; i++) {
+      if (localStorage.key(i) !== 'loglevel:webpack-dev-server') {
+        this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
       }
     }
   },
