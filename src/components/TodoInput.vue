@@ -1,6 +1,6 @@
 <template>
   <div class="inputBox shadow">
-    <input type="text" v-model="newTodoItem">
+    <input type="text" v-model="newTodoItem" @keyup.enter="addTodo">
     <span class="addContainer" v-on:click="addTodo">
       <i class="addBtn fas fa-plus" aria-hidden="true"></i>
     </span>
@@ -38,6 +38,8 @@ input:focus {
   border-radius: 5px;
 }
 .inputBox input {
+  width: 90%;
+  height: 100%;
   border-style: none;
   font-size: 0.9rem;
 }
