@@ -2,7 +2,7 @@
   <div>
     <TodoHeader></TodoHeader>
     <TodoInput></TodoInput>
-    <TodoList></TodoList>
+    <TodoList v-bind:propsdata="todoItems"></TodoList>
     <TodoFooter></TodoFooter>
   </div>
 </template>
@@ -14,6 +14,19 @@ import TodoList from "@/components/TodoList";
 import TodoFooter from "@/components/TodoFooter";
 export default {
   name: 'App',
+  created: function () {
+    console.log("created todoList");
+    for (let i = 0; i < localStorage.length; i++) {
+      if (localStorage.key(i) !== 'loglevel:webpack-dev-server') {
+        this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
+      }
+    }
+  },
+  data: function () {
+    return {
+      todoItems: []
+    }
+  },
   components: {
     TodoFooter, TodoList, TodoInput, TodoHeader
   }

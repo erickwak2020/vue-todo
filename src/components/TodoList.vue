@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul>
-      <li v-for="(todoItem,index) in todoItems" class="shadow" :key="todoItem.item">
+      <li v-for="(todoItem,index) in propsdata" class="shadow" :key="todoItem.item">
         <i class="checkBtn fas fa-check"  :class="{checkBtnCompleted: todoItem.completed}"
            @click="toggleComplete(todoItem)"></i>
         <span :class="{textCompleted: todoItem.completed}">{{ todoItem.item }}</span>
@@ -16,10 +16,8 @@
 <script>
 export default {
   name: "TodoList",
-  data() {
-    return {
-      todoItems: []
-    }
+  props: {
+    propsdata: Array
   },
   methods: {
     removeTodo: function(todoItem, index) {
@@ -35,14 +33,7 @@ export default {
       localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
     }
   },
-  created: function () {
-    console.log("created todoList");
-    for (let i = 0; i < localStorage.length; i++) {
-      if (localStorage.key(i) !== 'loglevel:webpack-dev-server') {
-        this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-      }
-    }
-  },
+
 }
 </script>
 
