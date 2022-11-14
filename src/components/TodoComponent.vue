@@ -16,14 +16,14 @@ import TodoList from "@/components/TodoList";
 import TodoFooter from "@/components/TodoFooter";
 export default {
   name: 'TodoComponent',
-  created: function () {
+  created() {
     for (let i = 0; i < localStorage.length; i++) {
       if (localStorage.key(i) !== 'loglevel:webpack-dev-server') {
         this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
       }
     }
   },
-  data: function () {
+  data() {
     return {
       todoItems: []
     }
@@ -32,7 +32,7 @@ export default {
     TodoFooter, TodoList, TodoInput, TodoHeader
   },
   methods: {
-    addOneItem: function (todoItem) {
+    addOneItem(todoItem) {
       let newTodoItem = {
         completed: false,
         item: todoItem
@@ -40,16 +40,16 @@ export default {
       localStorage.setItem(todoItem, JSON.stringify(newTodoItem));
       this.todoItems.push(newTodoItem);
     },
-    removeOneItem: function(todoItem, index) {
+    removeOneItem(todoItem, index) {
       localStorage.removeItem(todoItem);
       this.todoItems.splice(index, 1);
     },
-    toggleOneItem: function (todoItem,  index) {
+    toggleOneItem(todoItem,  index) {
       this.todoItems[index].completed = !this.todoItems[index].completed;
       //todoItem.completed = !todoItem.completed;
       this.updateItem(todoItem);
     },
-    clearAllItem: function() {
+    clearAllItem() {
       localStorage.clear();
       this.todoItems = [];
     },
