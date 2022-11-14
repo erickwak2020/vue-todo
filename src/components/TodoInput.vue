@@ -9,15 +9,11 @@
   <alert-modal :show="showModal" @close="showModal = false">
     <template #header>
       <h3>
-        경고
-        <i class="closeModalBtn fa fa-times"
-           aria-hidden="true"
-           @click="showModal = false">
-        </i>
+        경고 <i class="closeModalBtn fa fa-times" aria-hidden="true" @click="showModal = false"></i>
       </h3>
     </template>
     <template #body>
-      asdfsd
+      할 일을 입력 하세요.
     </template>
   </alert-modal>
 </template>
