@@ -58,7 +58,7 @@ input:focus {
 }
 .inputBox input {
   width: 90%;
-  height: 100%;
+  /*height: 100%;*/
   border-style: none;
   font-size: 0.9rem;
 }
