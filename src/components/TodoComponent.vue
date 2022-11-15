@@ -2,8 +2,7 @@
   <div>
     <TodoHeader></TodoHeader>
     <TodoInput v-on:addTodoItem="addOneItem"></TodoInput>
-    <TodoList v-bind:propsdata="todoItems"
-              v-on:removeItem="removeOneItem" @toggleItem="toggleOneItem">
+    <TodoList v-on:removeItem="removeOneItem" @toggleItem="toggleOneItem">
     </TodoList>
     <TodoFooter @clearAll="clearAllItem"></TodoFooter>
   </div>
