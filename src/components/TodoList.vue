@@ -3,9 +3,9 @@
     <TransitionGroup tag="ul" name="fade" class="container">
       <li v-for="(todoItem,index) in storedTodoItems" class="item" :key="todoItem.item">
         <i class="checkBtn fas fa-check"  :class="{checkBtnCompleted: todoItem.completed}"
-           @click="toggleComplete(todoItem, index)"></i>
+           @click="toggleOneItem({todoItem, index})"></i>
         <span :class="{textCompleted: todoItem.completed}">{{ todoItem.item }}</span>
-        <span class="removeBtn" v-on:click="removeTodo(todoItem.item, index)">
+        <span class="removeBtn" v-on:click="removeOneItem({todoItem, index})">
           <i class="removeBtn fas fa-trash-alt"></i>
         </span>
       </li>
@@ -14,17 +14,12 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex';
+import {mapGetters, mapMutations} from 'vuex';
 
 export default {
   name: "TodoList",
   methods: {
-    removeTodo(todoItem, index) {
-      this.$store.commit('removeOneItem', {todoItem, index});
-    },
-    toggleComplete(todoItem, index) {
-      this.$store.commit('toggleOneItem', {todoItem, index});
-    }
+    ...mapMutations(['removeOneItem','toggleOneItem'])
   },
   computed: {
     ...mapGetters(['storedTodoItems'])
