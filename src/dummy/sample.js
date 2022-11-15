@@ -1,5 +1,11 @@
-const arr = ["a", "b", "c"];
+let josh = {
+  field: 'web',
+  language: 'js'
+};
 
-arr.forEach(function (value) {
-  console.log(value);
-})
+let developer = {
+  nation: 'korea',
+  ...josh
+}
+
+console.log(developer);

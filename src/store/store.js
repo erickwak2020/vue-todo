@@ -23,6 +23,11 @@ export const store = createStore({
       todoItems: storage.fetch()
     }
   },
+  getters: {
+    storedTodoItems(state) {
+      return state.todoItems;
+    }
+  },
   mutations: {
     addOneItem(state, todoItem) {
       let newTodoItem = {
