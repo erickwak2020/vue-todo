@@ -9,6 +9,10 @@ const storage = {
       }
     }
     return arr;
+  },
+  update(todoItem) {
+    localStorage.removeItem(todoItem.item);
+    localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
   }
 }
 
@@ -20,5 +24,27 @@ export const store = createStore({
     }
   },
   mutations: {
+    addOneItem(state, todoItem) {
+      let newTodoItem = {
+        completed: false,
+        item: todoItem
+      }
+      localStorage.setItem(todoItem, JSON.stringify(newTodoItem));
+      state.todoItems.push(newTodoItem);
+    },
+    removeOneItem(state, payload) {
+      localStorage.removeItem(payload.todoItem);
+      state.todoItems.splice(payload.index, 1);
+    },
+    toggleOneItem(state, payload) {
+      const index = payload.index;
+      const todoItem = payload.todoItem;
+      state.todoItems[index].completed = !state.todoItems[index].completed;
+      storage.update(todoItem);
+    },
+    clearAllItem(state) {
+      localStorage.clear();
+      state.todoItems = [];
+    },
   }
 })

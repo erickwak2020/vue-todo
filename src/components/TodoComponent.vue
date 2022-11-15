@@ -1,10 +1,9 @@
 <template>
   <div>
     <TodoHeader></TodoHeader>
-    <TodoInput v-on:addTodoItem="addOneItem"></TodoInput>
-    <TodoList v-on:removeItem="removeOneItem" @toggleItem="toggleOneItem">
-    </TodoList>
-    <TodoFooter @clearAll="clearAllItem"></TodoFooter>
+    <TodoInput></TodoInput>
+    <TodoList></TodoList>
+    <TodoFooter></TodoFooter>
   </div>
 </template>
 
@@ -15,13 +14,6 @@ import TodoList from "@/components/TodoList";
 import TodoFooter from "@/components/TodoFooter";
 export default {
   name: 'TodoComponent',
-  created() {
-    for (let i = 0; i < localStorage.length; i++) {
-      if (localStorage.key(i) !== 'loglevel:webpack-dev-server') {
-        this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-      }
-    }
-  },
   data() {
     return {
       todoItems: []
@@ -31,31 +23,6 @@ export default {
     TodoFooter, TodoList, TodoInput, TodoHeader
   },
   methods: {
-    addOneItem(todoItem) {
-      let newTodoItem = {
-        completed: false,
-        item: todoItem
-      }
-      localStorage.setItem(todoItem, JSON.stringify(newTodoItem));
-      this.todoItems.push(newTodoItem);
-    },
-    removeOneItem(todoItem, index) {
-      localStorage.removeItem(todoItem);
-      this.todoItems.splice(index, 1);
-    },
-    toggleOneItem(todoItem,  index) {
-      this.todoItems[index].completed = !this.todoItems[index].completed;
-      //todoItem.completed = !todoItem.completed;
-      this.updateItem(todoItem);
-    },
-    clearAllItem() {
-      localStorage.clear();
-      this.todoItems = [];
-    },
-    updateItem(todoItem) { //로컬스토리지 데이터 갱신
-      localStorage.removeItem(todoItem.item);
-      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
-    }
   }
 }
 </script>
