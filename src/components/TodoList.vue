@@ -19,10 +19,10 @@ import {mapGetters, mapMutations} from 'vuex';
 export default {
   name: "TodoList",
   methods: {
-    ...mapMutations(['removeOneItem','toggleOneItem'])
+    ...mapMutations('todoStore', ['removeOneItem','toggleOneItem'])
   },
   computed: {
-    ...mapGetters(['storedTodoItems'])
+    ...mapGetters('todoStore', ['storedTodoItems'])
   }
 
 }

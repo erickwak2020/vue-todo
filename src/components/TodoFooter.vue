@@ -8,7 +8,7 @@
 import { mapMutations } from 'vuex';
 export default {
   methods: {
-    ...mapMutations(['clearAllItem']),
+    ...mapMutations('todoStore', ['clearAllItem']),
   }
 }
 </script>

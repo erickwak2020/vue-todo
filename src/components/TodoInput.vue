@@ -32,7 +32,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['addOneItem']),
+    ...mapMutations('todoStore', ['addOneItem']),
     addTodo() {
       if (this.newTodoItem !== '') {
         this.addOneItem(this.newTodoItem);
