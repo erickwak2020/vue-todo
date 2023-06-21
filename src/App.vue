@@ -1,26 +1,31 @@
 <template>
   <div>
-
+    <h1>Login</h1>
+    <todo-component></todo-component>
   </div>
 </template>
 
 <script>
-//import HelloWorld from './components/HelloWorld.vue'
-
+import TodoComponent from "@/components/TodoComponent";
 export default {
   name: 'App',
-  components: {
-    //HelloWorld
-  }
+  components: {TodoComponent}
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  margin-top: 60px;
+body {
+  text-align: center;
+  background-color: #F6F6F8;
+}
+input {
+  border-style: groove;
+  width: 200px;
+}
+button {
+  border-style: groove;
+}
+.shadow {
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.1)
 }
 </style>
